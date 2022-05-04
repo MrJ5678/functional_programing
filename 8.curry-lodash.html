@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script src="https://unpkg.com/lodash@4.17.21/lodash.js"></script> -->
+    <script src="utils/lodash.js"></script>
+    <script>
+      function getSum(a, b, c) {
+        return a + b + c
+      }
+      const curried = _.curry(getSum)
+      console.log(curried(1, 2)(3))
+
+      function curry(func) {
+        return function curriedFn(...args) {
+          // 判断实参和形参的个数
+          if(args.length < func.length) {
+            return function() {
+              return curriedFn(...args.concat(Array.from(arguments)))
+            }
+          }
+          return func(...args)
+        }
+      }
+    </script>
+  </body>
+</html>

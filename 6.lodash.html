@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://unpkg.com/lodash@4.17.21/lodash.js"></script>
+  <h1>lodash</h1>
+  <script>
+    function memoize(f) {
+      let cache = {}
+      return function () {
+        let key = JSON.stringify(arguments)
+        cache[key] = cache[key] || f.apply(f, arguments)
+        return cache[key]
+      }
+    }
+  </script>
+</body>
+</html>
